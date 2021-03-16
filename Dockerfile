@@ -1,11 +1,9 @@
 FROM node:alpine
 
-RUN mkdir -p /home/app
+RUN mkdir -p /app
 
-RUN npm install --production
+COPY . /app
 
-COPY . /home/app
+WORKDIR /app
 
-EXPOSE 3000
-
-CMD ["node","/home/app/index"]
+CMD ["node", "index.js", "--bind 0.0.0.0:$PORT"]
